@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-between align-items-center mt mt-5">
+    <h1 Style="font-family: 'Times New Roman';">History Book</h1>
+
+</div>
+<hr>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Issue Book</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success text-dark">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>    
+<div class="container mt-5">
+ 
+    <br>
+    <br>
+    <table class="table table-bordered  ">
+        <thead class="thead-dark">
+            <tr>
+                
+                <th  style="background-color:  #893606; color: aliceblue;"> Name</th>
+                <th  style="background-color:  #893606; color: aliceblue;"> BookName  </th>
+                <th  style="background-color:  #893606; color: aliceblue;"> Issue Date </th>
+                <th  style="background-color:  #893606; color: aliceblue;"> Return Date </th>
+            </tr>
+        </thead>
+        <tr *ngFor="let issueBook of issuebooks">
+         
+            <td style="font-size: large;">{{issueBook.name}}</td>
+            <td style="font-size: large;">{{issueBook.book}}</td>
+            <td style="font-size: large;">{{issueBook.issuedDate}}</td>
+            <td style="font-size: large;"> {{issueBook.returnDate}}  </td>
+         
+        </tr>
+    </table>
+</div>

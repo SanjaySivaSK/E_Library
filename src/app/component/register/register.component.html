@@ -1,0 +1,179 @@
+<section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row d-flex align-items-center justify-content-center h-100">
+      <div class="col-6">
+        <ng-lottie [options]="options"></ng-lottie>
+      </div>
+      <div class="col-6">
+        <h2 class="display-4 text-primary">Register</h2>
+        <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+          <input type="hidden" name="id" [(ngModel)]="id" />
+          <!-- Name input -->
+          <div class="form-outline mt-3 mb-3">
+            <input type="hidden" name="id" [(ngModel)]="id" />
+            <label class="form-label text-dark" for="form2Example1"
+              > Name</label
+            >
+
+            <input
+              type="text"
+              id="Author"
+              class="form-control"
+              name="person"
+              [(ngModel)]="person"
+              required
+              minlength="4"
+              #name="ngModel"
+              [ngClass]="{ 'is-invalid': name.invalid && name.dirty }"
+            />
+            <div *ngIf="name.invalid" class="invalid-feedback">
+              <div *ngIf="name.errors?.['required']">Name is required.</div>
+              <div *ngIf="name.errors?.['minlength']">
+                Name must have at least 4 characters.
+              </div>
+            </div>
+          </div>
+
+          <!-- Username input -->
+          <div class="form-outline mb-3">
+            <label class="form-label" for="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              class="form-control"
+              placeholder="Enter a valid username"
+              name="username"
+              [(ngModel)]="UserName"
+             required
+              minlength="3"
+              #username="ngModel"
+              [ngClass]="
+                username.invalid && username.dirty ? 'is-invalid' : ''
+              "
+            />
+            <div *ngIf="username.invalid" class="invalid-feedback">
+              Please enter a username with a minimum of 3 characters.
+            </div>
+          </div>
+
+          <!-- Phone Number input -->
+          <div class="form-outline mb-3">
+            <label class="form-label" for="phoneNumber">Phone Number</label>
+            <input
+              type="tel"
+              id="phoneNumber"
+              class="form-control"
+              placeholder="Enter your phone number"
+              name="phonenumber"
+              [(ngModel)]="phoneNumber"
+              #phonenumber="ngModel"
+              ngModel
+              required
+              pattern="[0-9]{10}"
+           
+              [ngClass]="phonenumber.invalid && phonenumber.dirty ? 'is-invalid' : ''"
+            />
+            <div *ngIf="phonenumber.invalid" class="invalid-feedback">
+              Please enter a valid 10-digit phone number.
+            </div>
+          </div>
+
+          <!-- Address input -->
+          <div class="form-outline mb-3">
+            <label class="form-label" for="address">Address</label>
+            <textarea
+              id="address"
+              class="form-control"
+              placeholder="Enter your address"
+              name="address"
+              [(ngModel)]="AddressHome"
+              #address="ngModel"
+              ngModel
+              required
+              minlength="10"
+     
+              [ngClass]="address.invalid && address.dirty ? 'is-invalid' : ''"
+            ></textarea>
+            <div *ngIf="address.invalid" class="invalid-feedback">
+              Please enter your address.
+            </div>
+          </div>
+
+          <!-- Profession input -->
+          <div class="form-outline mb-3">
+            <label class="form-label" for="profession">Profession</label>
+            <input
+              type="text"
+              id="profession"
+              class="form-control"
+              placeholder="Enter your profession"
+              name="profession"
+              #profession="ngModel"
+              [(ngModel)]="Profession"
+              ngModel
+              required
+              [ngClass]="profession.invalid && profession.dirty ? 'is-invalid' : ''"
+            />
+            <div *ngIf="profession.invalid" class="invalid-feedback">
+              Please enter your profession.
+            </div>
+          </div>
+
+          <!-- Password input -->
+          <div class="form-outline  mb-3">
+            <label class="form-label" for="form2Example2">Password</label>
+            <input
+              type="password"
+              id="Password"
+              class="form-control "
+              name="password"
+              [(ngModel)]="Password"
+              ngModel
+              required
+              minlength="3"
+              maxlength="8"
+              #password="ngModel"
+              [ngClass]="password.invalid && password.dirty ? 'is-invalid' : ''"
+            />
+            <div *ngIf="password.invalid" class="invalid-feedback">
+              password must be 8 charater
+            </div>
+          </div>
+      
+          <!-- cpassword input -->
+          <div class="form-outline mb-3">
+            <label class="form-label" for="form2Example2"> confirm Password</label>
+            <input
+              type="password"
+              id="Password"
+              class="form-control "
+              name="cpassword"
+              
+              ngModel
+              required
+              pattern="{{ password.value }}"
+              minlength="3"
+              maxlength="8"
+              #cpassword="ngModel"
+              [ngClass]="cpassword.invalid && cpassword.dirty  ? 'is-invalid' : ''"
+            />
+      
+            <div *ngIf="password.value !== cpassword.value " class="text-danger">
+              password mismatch
+            </div>
+          </div>
+          <div class="d-flex align-items-center mb-4">
+            <span>Already registered?</span>
+            <a routerLink="/login" class="text-primary text-decoration-none px-2">Login here</a>
+          </div>
+
+          <!-- Submit button -->
+          <div class="d-grid gap-2 mb-5">
+       
+            <button type="submit" class="btn btn-primary fs-5 text-white" [disabled]="myForm.invalid "style="background-color:#78350f">Register</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

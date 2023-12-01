@@ -1,0 +1,131 @@
+<div class="container">
+  <!-- Search bar -->
+  <div class="input mb-2 d-flex justify-content-center mt-5 align-items-center">
+    <input
+      type="text"
+      class="border border-radius-5 py-2"
+      placeholder="   Search"
+      name="searchQuery"
+      style="
+        width: 550px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+      "
+    />
+    <button
+      class="btn border border-radius-5 ms-1"
+      style="border-top-left-radius: 0; border-bottom-left-radius: 0"
+      (click)="onSearch()"
+    >
+      <i class="fas fa-search fa-1x"></i>
+    </button>
+  </div>
+
+  <hr />
+
+  <div class="row" id="books">
+    <div class="col-2" *ngFor="let book of books" style="margin-bottom: 20px;">
+ 
+        <div
+          class="bg-image hover-overlay ripple"
+          data-mdb-ripple-color="light"
+          type="button"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            data-bs-whatever="@mdo"
+            (click)="popup(book)"
+              class="mask"
+        >
+          <img
+          style="height: 200px; object-fit: contain;"
+            src="{{'http://localhost:8080/api/downloadFile/'+ book.id  }}"
+
+           
+            alt="..."
+          />
+          <a href="#!">
+            <div 
+            
+              style="background-color: rgba(251, 251, 251, 0.15)"
+            ></div>
+          </a>
+        </div>
+
+        <div class="w-100" id="Description">
+        
+        </div>
+    
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+        <input type="hidden" name="id" [(ngModel)]="number" />
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-6">
+            <img
+            style="height: 300px; object-fit: contain;"
+            src="{{'http://localhost:8080/api/downloadFile/'+ id  }}"
+              class="card-img"
+            />
+          </div>
+          <div class="col-6">
+            <label
+              for="book-name"
+              class="col-form-label"
+              style="font-size: large"
+              >Book:{{ bookName }}</label
+            >
+            <br />
+            <label
+              for="category-name"
+              class="col-form-label"
+              style="font-size: large"
+            >
+              Category:{{ CategoryName }}</label
+            >
+            <br />
+            <label
+              for="author-name"
+              class="col-form-label"
+              style="font-size: large"
+              >Author:{{ AuthorName }}</label
+            >
+            <br />
+            <label
+              for="description"
+              class="col-form-label"
+              style="font-size: large"
+            >
+              Description:{{ Description }}</label
+            >
+            <br />
+            <button 
+              class="btn btn-danger text-white w-100"
+              (click)="requestBook(id)"
+            >
+              Request
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,123 @@
+<div class="d-flex  align-items-center  mt-5  justify-content-between me-3" >
+  <h1 Style="font-family: 'Times New Roman';">Category :</h1>
+  <button
+      type="button"
+      class="btn text-dark  text-white     "
+      style="background-color: #2a2a2a;"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+      data-bs-whatever="@mdo"
+    >
+      + Add Category
+    </button>
+ 
+</div>
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Category</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="close()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form #categoryForm="ngForm" (ngSubmit)="onSubmit(categoryForm)">
+          <div class="form-outline mt-3 mb-3">
+            <input type="hidden" name="id" [(ngModel)]="id" />
+            <label class="form-label text-dark" for="form2Example1"
+              >Category Name</label
+            >
+
+            <input
+              type="text"
+              id="category"
+              class="form-control"
+              name="category"
+              [(ngModel)]="category"
+              ngModel
+              required
+              minlength="4"
+              #name="ngModel"
+              [ngClass]=" 
+              name.invalid && name.dirty? 'is-invalid': '' "
+            />
+            <div *ngIf="name.invalid" class="invalid-feedback">
+              <div *ngIf="name.errors?.['required']">Name is required.</div>
+              <div *ngIf="name.errors?.['minlength']">
+                Name must have at least 4 characters.
+              </div>
+            </div>
+          </div>
+          <br />
+          <button
+            type="submit"
+            style="font-size: large; font-weight: 500"
+            class="btn btn-success text-dark w-100"
+          >
+            {{ editId === 0 ? "add" : "update" }}
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<hr />
+
+<div class="row">
+  <div class="col-12">
+    <div class="container ">
+      
+      <table class="table table-hover mt-5">
+        <thead class="thead-dark">
+          <tr>
+            <th style="background-color: #893606; color: aliceblue">S.No</th>
+            <th style="background-color: #893606; color: aliceblue">Category</th>
+            <th style="background-color: #893606; color: aliceblue">Edit</th>
+            <th style="background-color: #893606; color: aliceblue">Delete</th>
+          </tr>
+        </thead>
+        <tbody class="table-center">
+          <tr *ngFor="let category of categories">
+            <td style="font-size: large">{{ category.id }}</td>
+            <td style="font-size: large">{{ category.category }}</td>
+            <td>
+              <button
+                type="button"
+                class="btn   text-white w-50"
+                style="background-color: #080808; color: aliceblue"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+                data-bs-whatever="@mdo"
+                (click)="edit(category)"
+              > <i class="fas fa-edit"></i>
+                Edit
+              </button>
+    </td><td>
+              <button
+                class="btn btn-danger text-white w-50"
+                style="background-color: #ff5d5d; color: aliceblue"
+                (click)="delete(category.id)"
+              >
+                <i class="fas fa-trash-alt"></i> Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-6">
+    <img src="/src/assets/img.png" alt="">
+  </div>
+</div>

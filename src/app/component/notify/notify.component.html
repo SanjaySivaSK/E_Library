@@ -1,0 +1,28 @@
+
+<div class="d-flex justify-content-between align-items-center mt mt-5">
+  <h1 Style="font-family: 'Times New Roman';">Notifications</h1>
+
+</div>
+<hr>
+<table class="table table-hover">
+  <thead>
+    <tr>
+     
+      <th scope="col" style="background-color: #893606; color: aliceblue">Book Code</th>
+      <th scope="col"style="background-color: #893606; color: aliceblue"> Book Name</th>
+      <th scope="col"style="background-color: #893606; color: aliceblue"> User Code</th>
+      <th scope="col"style="background-color: #893606; color: aliceblue">User Name</th>
+      <th scope="col" style="background-color: #893606; color: aliceblue"> Clear</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let notify of notifys">
+      <td>{{ notify.book.id}}</td>
+      <td>{{notify.book.book}}</td>
+      <td>{{notify.appUser.id}}</td>
+        <td>{{ notify.appUser.name }}</td>
+        <td><button (click)="clear(notify.id)" 
+          class="btn btn-primary text-white fs-5  w-50" style="background-color:#3c3b3a">clear</button></td>
+    </tr>
+  </tbody>
+</table>

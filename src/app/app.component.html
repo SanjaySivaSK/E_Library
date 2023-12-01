@@ -1,0 +1,105 @@
+<div *ngIf="!isLoggedIn">
+  <router-outlet />
+</div>
+
+<div *ngIf="isLoggedIn" class="container-fluid vh-100 d-flex flex-column">
+  <div class="row">
+    <header class="navbar sticky-top bg-primary p-2 shadow">
+      <a class="navbar-brand px-3 text-dark  letter-spacing-3 text-white" Style="font-weight: bold;font-family: 'Times New Roman';" routerLink="/">E-Library</a>
+      <div class="navbar-nav px-4 text-white" (click)="logout()" role="button">
+        <i class="fa-solid fa-solid fa-right-from-bracket text-white"></i>
+      </div>
+    </header>
+  </div>
+
+  <div *ngIf="isAdmin" class="row flex-grow-1">
+    <div class="sidebar border border-right col-2 p-0">
+      <div class="bg-body-tertiary h-100" tabindex="-1">
+        <div class="d-flex flex-column p-0 pt-3 overflow-y-auto">
+          <ul class="nav flex-column">
+            <li class="nav-item d-flex align-items-center px-4 sideBarItem   ">
+              <i class="fas fa-house-user"></i>
+              <a class="nav-link d-flex align-items-center  " routerLink="/admin"> Dashboard </a>
+            <li class="nav-item d-flex align-items-center px-4 sideBarItem ">
+              <i class="fas fa-tag"></i>
+              <a class="nav-link d-flex align-items-center " routerLink="/category" (click)="category()">Categories </a>
+            </li>
+            <li class="nav-item d-flex align-items-center px-4 sideBarItem  ">
+              <i class="fas fa-users"></i>
+              <a class="nav-link d-flex align-items-center  " routerLink="/author" (click)="author()">Authors</a>
+            </li>
+            <li class="nav-item d-flex align-items-center px-4 sideBarItem  ">
+              <i class="fas fa-book-open"></i>
+              <a class="nav-link d-flex align-items-center  " routerLink="/book" (click)="book()">Books</a>
+            </li>
+            <li class="nav-item d-flex align-items-center px-4 sideBarItem ">
+              <i class="fas fa-clipboard-check"></i>
+              <a class="nav-link d-flex align-items-center  " routerLink="/Issuebook" (click)="issueBook()">Issue Books</a> 
+            </li>
+            <li class="nav-item d-flex align-items-center px-4 sideBarItem ">
+              <i class="fas fa-clipboard"></i>
+              <a class="nav-link d-flex align-items-center  " routerLink="/returnBook "(click)="returnBook()">ReturnBook</a> 
+            </li>
+            <li class="nav-item d-flex align-items-center px-4 sideBarItem  ">
+              <i class="fas fa-history"></i>
+              <a class="nav-link d-flex align-items-center  " routerLink="/Userhistory" (click)="userHistory()">User History</a>
+            </li> 
+
+            <li class="nav-item d-flex align-items-center px-4 sideBarItem ">
+              <i class="fas fa-user-circle"></i>
+              <a class="nav-link d-flex align-items-center " routerLink="/student" (click)="student()">Registered Student</a>
+            </li>
+            <li class="nav-item d-flex align-items-center px-4 sideBarItem  ">
+              <i class="fas fa-bell"></i>
+              <a class="nav-link d-flex align-items-center  " routerLink="/notify" (click)="notification()">Notification</a>
+            </li>
+          
+         
+          </ul>
+        </div>
+      </div>
+    </div>
+    <main class="col-10 px-4">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+  <div *ngIf="!isAdmin" class="row flex-grow-1">
+    <div class="sidebar border border-right col-2 p-0">
+      <div class="bg-body-tertiary h-100" tabindex="-1">
+        <div class="d-flex flex-column p-0 pt-3 overflow-y-auto">
+          <ul class="nav flex-column">
+           
+           
+            <li class="nav-item d-flex align-items-center px-4 sideBarItem   ">
+              <i class="fas fa-book-open"></i>
+              <a class="nav-link d-flex align-items-center  " routerLink="/" (click)="studentBook()">Books</a>
+            </li>
+            <li class="nav-item d-flex align-items-center px-4 sideBarItem    ">
+              <i class="fas fa-house-user"></i>
+              <a class="nav-link d-flex align-items-center    " routerLink="/profile" (click)="studentProfile()" > Profile </a>
+            </li>
+           
+            <li class="nav-item d-flex align-items-center px-4 sideBarItem     ">
+              <i class="fas fa-history"></i>
+              <a class="nav-link d-flex align-items-center    " routerLink="/history" (click)="studentHistory()">Book History</a>
+            </li> 
+
+           
+          
+            <li class="nav-item d-flex align-items-center px-4 sideBarItem    ">
+              <i class="fas fa-key"></i>
+              <a class="nav-link d-flex align-items-center    ">Change Password</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <main class="col-10 px-4">
+      <router-outlet></router-outlet>
+    </main> 
+</div>
+
+
+<div *ngIf="loaderService.isLoading | async" class="loader">
+  <ng-lottie [options]="options"></ng-lottie>
+</div>

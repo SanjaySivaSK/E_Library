@@ -1,0 +1,184 @@
+  <div class="d-flex justify-content-between align-items-center mt mt-5">
+    <h1 Style="font-family: 'Times New Roman';">Book :</h1>
+    <button
+      type="button"
+      class="btn text-dark  text-white     "
+      style="background-color: #2a2a2a;"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+      data-bs-whatever="@mdo"
+    >
+      + Add Book
+    </button>
+ 
+  </div>
+  <hr />
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add Book</h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <!-- Inside your modal body -->
+          <form #ngBook="ngForm" (ngSubmit)="onSubmit(ngBook)">
+            <div class="mb-3">
+              <input type="hidden" name="id" [(ngModel)]="id" />
+              <label
+                for="book-name"
+                class="col-form-label"
+                style="font-size: large"
+                >Book Name</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="book-name"
+                [(ngModel)]="BookName"
+                name="book"
+              />
+            </div>
+            <div class="mb-3">
+              <label
+                for="category-select"
+                class="col-form-label"
+                style="font-size: large"
+                name="category"
+                >Category</label
+              >
+              <select
+                class="form-control"
+                id="category-select"
+                [(ngModel)]="category"
+                name="categoryId"
+              >
+                <option value="" disabled selected>Select a category</option>
+                <option
+                  *ngFor="let category of categories"
+                  value="{{ category.id }}"
+                >
+                  {{ category.category }}
+                </option>
+              </select>
+
+            </div>
+          
+
+            <div class="mb-3">
+              <label
+                for="author-select"
+                class="col-form-label"
+                style="font-size: large"
+                >Author</label
+              >
+              <select
+                class="form-control"
+                id="author-select"
+                [(ngModel)]="Author"
+                name="authorId"
+              >
+                <option value="" disabled selected>Select an author</option>
+                <option *ngFor="let author of author" value="{{ author.id }}">
+                  {{ author.author }}
+                </option>
+                =
+                <!-- Add more options as needed -->
+              </select>
+              <div class="mb-3">
+                <label
+                  for="book-name"
+                  class="col-form-label"
+                  style="font-size: large"
+                  >Description</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="book-name"
+                  [(ngModel)]="description"
+                  style="height: 100px"
+                  name="description"
+                />
+                <div class="form-outline mb-3">
+                  <label class="form-label" for="customFile" style="font-size: large">Choose Image</label>
+                  <input
+                    type="file"
+                    class="form-control input-file"
+                    id="customFile"
+                    ngModel
+                    name="photo"
+                    (change)="onFileChange($event)"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="submit"
+                class="btn btn-success text-dark w-100"
+                style="font-size: large"
+                data-bs-dismiss="modal"
+              >
+                {{ editId == 0 ? "Add" : "Update" }}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-5">
+    <table class="table  table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th style="background-color: #893606; color: aliceblue">S.No</th>
+          <th style="background-color: #893606; color: aliceblue">BookName</th>
+          <th style="background-color: #893606; color: aliceblue">Author</th>
+          <th style="background-color: #893606; color: aliceblue">Category</th>
+          <th style="background-color: #893606; color: aliceblue">Edit</th>
+          <th style="background-color: #893606; color: aliceblue">Delete</th>
+
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let book of books">
+          <td style="font-size: large">{{ book.id }}</td>
+          <td style="font-size: large">{{ book.book }}</td>
+          <td style="font-size: large">{{ book.author.author }}</td>
+          <td style="font-size: large">{{ book.category.category }}</td>
+          <td class="table-center"><button
+            type="button"
+            class="btn btn-dark text-white w-50"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            data-bs-whatever="@mdo"
+           
+           
+           
+          > <i class="fas fa-edit"></i>
+          Edit
+          </button></td>
+
+        <td>
+            <button class="btn btn-danger text-white w-50"    style="background-color: #ff5d5d; color: aliceblue" (click)="deleteBook(book.id)">
+              <i class="fas fa-trash-alt"></i> Delete
+            </button>
+          </td> 
+        </tr>
+      </tbody>
+    </table>
+  </div>

@@ -1,0 +1,49 @@
+
+
+<div class="login"><section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row d-flex align-items-center justify-content-center h-100">
+      <div class="col-md-6">
+        <ng-lottie [options]="options"></ng-lottie>
+      </div>
+      <div class="col-md-5">
+        <div class="login-form-container " style="background-color: #f8f9fa; padding: 20px;border-radius:10px;">
+          <h2 class="display-4 text-primary " style="color:#78350f ;">Login</h2>
+          <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+            <!-- Username input -->
+            <br>
+            <div class="form-group ">
+              <label for="username" class="fs-5" style="color:#78350f ;">Username</label>
+              <br>
+             
+              <input type="text" class="form-control" name="username" [(ngModel)]="username" />
+            </div>
+ <br>   
+            <!-- Password input -->
+            <div class="form-group">
+              <label for="password" class="fs-5" style="color:#78350f">Password</label>
+              <input type="password" class="form-control" name="password" [(ngModel)]="password" style="color: var(--red-700);"/>
+            </div>
+ 
+            <p class="error" [ngClass]="{ 'visible': error.length > 0, 'invisible': !error.length }">
+              {{ error }}
+            </p>
+ 
+            <div class="d-flex align-items-center ">
+              <span>Not registered?</span>
+              <a routerLink="/register" class="text-primary  px-2 fs-5 "style="color:#78350f">Register here</a>
+            </div>
+ 
+            <br>  
+            <!-- Submit button -->
+            <div class="d-grid gap-2">
+              <button type="submit" class="btn btn-primary fs-5 " style="background-color:#78350f">Login</button>
+            </div>
+            <br>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>

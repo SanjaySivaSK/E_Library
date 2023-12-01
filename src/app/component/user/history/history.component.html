@@ -1,0 +1,47 @@
+<br>
+<br>
+
+
+<div class="container mt-5">
+    <h2 class="text-center"> Issue Book </h2>
+    <br>
+    <br>
+    <table class="table table-bordered  text-center">
+        <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th> BookName  </th>
+                <th> Issue Date </th>
+                <th> Return Date </th>
+               <th>Fine Amount</th>
+                <th>Return/th>
+                <td>Fine Cal</td>
+     
+                
+           
+            </tr>
+        </thead>
+        <tbody><tr *ngFor="let userbook of userbooks">
+         
+            <td>{{userbook.name}}</td>
+            <td>{{userbook.book}}</td>
+            <td>  {{userbook.issuedDate}} </td>
+            <td>  {{userbook.returnDate}} </td>
+            <td>{{ fineAmount}}</td>
+              
+            <td><button class="btn btn-success text-dark w-100" (click)="returnBook(userbook.id)">Return</button></td>
+            <td ><button class="btn btn-success text-dark w-100" (click)="calculate(userbook)">Fine Cal</button></td>
+     
+          
+         
+        
+        </tr>
+
+        </tbody>
+       
+    </table>
+</div>
+
+
+ 
+

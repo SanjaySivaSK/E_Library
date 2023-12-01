@@ -1,0 +1,35 @@
+<div class="d-flex justify-content-between align-items-center mt-5">
+    <h1 style="font-family: 'Times New Roman';">ReturnBook</h1>
+
+  </div>
+  <hr>
+  
+  
+  
+  <div class="container mt-5">
+    <br>
+    <br>
+    <table class="table table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th style="background-color: #893606; color: aliceblue;">Name</th>
+                <th style="background-color: #893606; color: aliceblue;">Book Name</th>
+                <th style="background-color: #893606; color: aliceblue;">Return or Return Not</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let returnBook of returnBooks">
+                <td style="font-size: large;">{{ returnBook.appUser.name }}</td>
+                <td style="font-size: large;">{{ returnBook.book.book }}</td>
+                <td style="font-size: large;">
+                  
+                    <span *ngIf="returnBook.returned; else notReturned">Returned</span>
+                    <ng-template #notReturned>Not Returned</ng-template>
+                </td>
+            </tr>
+            
+        </tbody>
+    </table>
+  </div>
+  

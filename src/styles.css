@@ -1,0 +1,269 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Exo+2&display=swap");
+@import 'ngx-toastr/toastr';
+:root {
+  --primary-50: #ffffff;
+  --primary-100:  #CCCC99;
+  --primary-300:  #78350f  ;
+  --primary-500: #f2d200;
+  --primary-1000: #CCCC99 ;
+  --primary-600: #78350f;
+  --primary-700: #b45309;
+  --primary-900: #78350f;
+  --secondary-100: #f1b605;
+  --secondary-500: #64748b;
+  --secondary-900: #0f172a;
+  --red-100: #fee2e2;
+  --red-300: #fca5a5;
+  --red-500: #ef4444;
+  --red-700: #b91c1c;
+  --green-300: #bef264;
+  --green-500: #84cc16;
+  --green-700: #4d7c0f;
+  --border-radius: 4px;
+}
+
+body {
+  font-family:  'Times New Roman';
+  background-color: var(--primary-50);
+}
+
+/* text */
+.text-primary {
+  color: var(--primary-600) !important;
+}
+
+/* background */
+.bg-primary {
+  background-color: var(--primary-600) !important;
+}
+
+/* button */
+.btn {
+  border-radius: var(--border-radius);
+}
+
+.btn-primary {
+  color: var(--secondary-100);
+  background: var(--primary-500);
+  border: none;
+}
+
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
+  color: var(--secondary-100);
+  background: var(--primary-600) !important;
+  border: none;
+}
+
+.btn-danger {
+  color: var(--secondary-100);
+  background: var(--red-500);
+  border: none;
+}
+
+.btn-danger:hover {
+  color: var(--secondary-100);
+  background: var(--red-700);
+  border: none;
+}
+
+.btn-success {
+  color: var(--secondary-100);
+  background: var(--green-500);
+  border: none;
+}
+
+.btn-success:hover {
+  color: var(--secondary-100);
+  background: var(--green-700);
+  border: none;
+}
+
+/* form */
+.form-control,
+.form-control:focus {
+  color: var(--secondary-900);
+  background-color: var(--bs-body-bg);
+  border-color: var(--primary-500);
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem var(--primary-300);
+}
+
+.form-label {
+  color: black;
+  font-family:  'Times New Roman';
+  font-size: larger;
+  
+}
+
+
+
+/* background color */
+.bg-body-tertiary {
+  background-color: var(--primary-100) !important;
+}
+
+/* Custom */
+.error {
+  background-color: var(--red-100);
+  margin: 8px 0px;
+  padding: 2px 6px;
+  display: block;
+  color: var(--red-700);
+  border-radius: var(--border-radius);
+  height: 30px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.sideBarActive,
+.sideBarActive > a,
+.sideBarActive > a:hover,
+.sideBarActive > a:active {
+  color: var(--primary-300);
+  background-color: var(--primary-50) !important;
+  padding: 8px;
+}
+
+.sideBarItem,
+.sideBarItem > a {
+  color: var(--primary-300);
+  padding: 8px;
+}
+
+.sideBarItem > a:hover {
+  color: var(--primary-900);
+}
+
+.sideBarActive > .fa-solid {
+  color: var(--primary-500);
+}
+
+.sideBarItem:hover {
+  color: var(--primary-5);
+  background-color: var(--primary-50);
+  padding: 8px;
+}
+
+/* Icon */
+.fa-solid {
+  color: var(--primary-300);
+}
+
+.loader {
+  position: absolute;
+  min-height: 100vh;
+  min-width: 100vw;
+  opacity: 0.5;
+  background-color: #000;
+  z-index: 99;
+  left: 0;
+  top: 0;
+}
+
+.lottie-loader {
+  width: 150px !important;
+  height: 150px !important;
+  position: absolute;
+  top: 40%;
+  left: 45%;
+}
+#categorycard{
+    border-radius: 2;
+    width: 280px;
+     height: 150px; 
+     background-color:  #CCCC99;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+   
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+#bookcard{
+  border-radius: 2;
+  width: 280px;
+   height: 150px; 
+   background-color:  #CCCC99;
+
+  margin: 0;
+  display: flex;
+ 
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+#authorcard{
+  border-radius: 2;
+  width: 280px;
+   height: 150px; 
+   background-color:  #CCCC99;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+ 
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+#studentcard{
+  border-radius: 2;
+  width: 280px;
+   height: 150px; 
+   background-color:  #CCCC99;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+ 
+  color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.small-orange-box {
+  background-color: orange;
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 20px; /* Adjust margin as needed */
+}
+div.login,
+div.register {
+  position: relative;
+}
+
+div.login::before,
+div.register::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url('https://img.freepik.com/free-photo/abundant-collection-antique-books-wooden-shelves-generated-by-ai_188544-29660.jpg?t=st=1700476665~exp=1700480265~hmac=eea46fa07d09255a69203e92895c11cf8ef7a8d27c365e005b15b9a39b6d8740&w=1060');
+  opacity: 0.9; /* Adjust the opacity value as needed */
+  z-index: -1;
+  
+}
+div.register::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url('https://img.freepik.com/free-photo/abundant-collection-antique-books-wooden-shelves-generated-by-ai_188544-29660.jpg?t=st=1700476665~exp=1700480265~hmac=eea46fa07d09255a69203e92895c11cf8ef7a8d27c365e005b15b9a39b6d8740&w=1060');
+
+  
+  
+  z-index: -1;
+  
+}
+.custom-search-input {
+  width: 150px;
+}
+.custom-font {
+  font-family: 'Times New Roman';
+}
+
+.large-font {
+  font-size: large;
+}

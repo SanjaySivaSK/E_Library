@@ -1,0 +1,85 @@
+<br>
+<br>
+<div class="d-flex justify-content-between align-items-center">
+    <h1 Style="font-family: 'Times New Roman';">Author :</h1>
+    
+    <button
+    type="button"
+    class="btn text-dark  text-white     "
+    style="background-color: #2a2a2a;"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+    data-bs-whatever="@mdo"
+  >
+    + Add Author
+  </button>
+
+</div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Add Author</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="close()"></button>
+            </div>
+            <div class="modal-body">
+              <form #authorform="ngForm" (ngSubmit)="onSubmit(authorform)">
+                    <div class="form-outline mt-3 mb-3">
+                      <label class="form-label text-dark" for="form2Example1">Author Name</label>
+                      <input
+                        type="text"
+                        id="Author"
+                        class="form-control"
+                        name="author"
+                        [(ngModel)]="author"
+                       required
+                        minlength="4"
+                        #name="ngModel"
+                        [ngClass]="{ 'is-invalid': name.invalid && name.dirty }"
+                      />
+                      <div *ngIf="name.invalid" class="invalid-feedback">
+                        <div *ngIf="name.errors?.['required']">Name is required.</div>
+                        <div *ngIf="name.errors?.['minlength']">Name must have at least 4 characters.</div>
+                        
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-success text-dark w-100" style="font-size: large;"  data-bs-dismiss="modal" >{{editId==0?"Add":"Update"}}</button>
+                  </form>
+                  
+            </div>
+         
+      
+            
+        </div>
+        </div>
+    </div>
+<hr>
+<div class="container mt-5">
+   
+ 
+    <table class="table   table-hover">
+        <thead class="thead-dark ">
+            <tr>
+              <th style="background-color:  #893606; color: aliceblue;">S.No</th>
+              <th style="background-color:  #893606; color: aliceblue;">Author</th>
+             <th style="background-color:  #893606; color: aliceblue;">Edit</th>
+             <th style="background-color:  #893606; color: aliceblue;">Delete</th>
+            </tr>
+        </thead>
+        <tbody class="table-center">
+          <tr *ngFor=" let author of authors"> 
+            <td  style="font-size: large;">{{author.id}}</td>
+            <td style="font-size: large;" >{{author.author}}</td>
+           
+              <td><button type="button" class="btn btn-dark text-white w-50   " data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" 
+         (click)="edit(author)"> <i class="fas fa-edit"></i>Edit </button></td>
+<td>
+               <button  style="font-size: large;"style="background-color: #ff5d5d; color: aliceblue" type="button"class="btn btn-danger text-white  w-50 " (click)="delete(author.id)"> <i class="fas fa-trash-alt"  ></i> Delete </button>
+              </td>
+           
+        </tr>
+
+        </tbody>
+       
+    </table>
+</div>

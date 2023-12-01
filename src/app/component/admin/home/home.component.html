@@ -1,0 +1,81 @@
+<br>
+<br>    
+<div>
+    <h1 Style="font-family: 'Times New Roman';">Welcome Administrator</h1>
+    <hr>
+</div>
+<br>
+<br>
+<div class="container-fluid">
+  <div class="col-12 d-flex justify-content-between">
+    <div class="col-4 box border d-flex rounded "  style="border-radius:2; width: 280px; height: 90px;">
+      <div class="col-6 d-flex align-items-center justify-content-center  p-2" style="   background-color: #b47048"><i class="fas fa-book-open fa-4x text-white"></i></div>
+      <p class="col-6 d-flex align-items-center justify-content-center" [ngClass]="{'custom-font': true, 'large-font': true}">
+        Books <br><span class="ms-2"> {{ bookCount}}</span> 
+      </p>
+      
+      
+      
+    </div>
+    <div class="col-4 box border d-flex rounded" style="border-radius: 2; width: 280px; height:90px;">
+      <div class="col-6 d-flex align-items-center justify-content-center" style=" background-color: #b47048">
+          <i class="fas fa-tag fa-4x text-white"></i>
+      </div> <p class="col-6 d-flex align-items-center justify-content-center" [ngClass]="{'custom-font': true, 'large-font': true}">
+       Category<br><span class="ms-2"> {{categoryCount}}</span>
+      </p>
+      
+  </div>
+    <div class="col-4 box border d-flex rounded"  style="border-radius:2; width: 280px; height: 90px;">
+      <div class=" col-6 d-flex align-items-center justify-content-center" style=" background-color: #b47048"> 
+          <i class="fas fa-users fa-4x text-white"></i></div>
+          <p class="col-6 d-flex align-items-center justify-content-center" [ngClass]="{'custom-font': true, 'large-font': true}">
+           Authors<br><span class="ms-2"> {{authorCount}}
+          </span>
+        </p>
+          
+    </div>
+    
+  </div>
+</div>
+<br>
+    <br>
+    <div class="container-fluid">
+        <div class="col-12 d-flex justify-content-between">
+          <div class="col-4 box border d-flex rounded "  style="border-radius:2; width: 280px; height: 90px;">
+            <div class="col-6 d-flex align-items-center justify-content-center  p-2" style="   background-color: #b47048"><i class="fas fa-clipboard-check fa-4x text-white"></i></div>
+            <p class="col-6 d-flex align-items-center justify-content-center" [ngClass]="{'custom-font': true, 'large-font': true}">
+              Issued Book<br><span class="ms-2">{{issuedCount}}</span>
+            </p>
+          </div>
+
+          <div class="col-4 box border  d-flex rounded"  style="border-radius:2; width: 280px; height: 90px;">
+            <div class="col-6 d-flex align-items-center justify-content-center" style=" 
+            background-color: #b47048"><i class="fas fa-user-graduate fa-4x text-white"></i></div>
+       <p class="col-6 d-flex align-items-center justify-content-center" [ngClass]="{'custom-font': true, 'large-font': true}">
+        Users<br><span class="ms-2">{{studentCount}}</span>
+      </p>
+      
+          </div>
+          <!-- <div class="col-3 box border d-flex rounded" style="border-radius: 2; width: 280px; height:90px;">
+            <div class="col-6 d-flex align-items-center justify-content-center" style=" background-color: #b47048">
+                <i class="fas fa-thumbs-up fa-4x text-white"></i>
+            </div>
+            <p class="col-6 d-flex align-items-center justify-content-center" Style="font-family: 'Times New Roman';font-size: large ">Return</p>
+        </div>
+          <div class="col-3 box border d-flex rounded"  style="border-radius:2; width: 280px; height: 90px;">
+            <div class=" col-6 d-flex align-items-center justify-content-center" style=" background-color: #b47048"> 
+                <i class="fas fa-thumbs-down fa-4x text-white"></i></div>
+            <p class="col-6 d-flex align-items-center justify-content-center" Style="font-family: 'Times New Roman'; font-size: large"> &nbsp;&nbsp;&nbsp;&nbsp; Not Return</p>
+          </div> -->
+          <div class="col-4 box border  d-flex rounded"  style="border-radius:2; width: 280px; height: 90px;">
+            <div class="col-6 d-flex align-items-center justify-content-center" style=" 
+            background-color: #b47048"><i class="fas fa-calendar-alt fa-4x text-white"></i></div>
+            
+            <p class="col-6 d-flex align-items-center justify-content-center" [ngClass]="{'custom-font': true, 'large-font': true}">
+              Date <br><span class="ms-2">{{formattedDate}}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      
+

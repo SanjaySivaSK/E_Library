@@ -1,0 +1,80 @@
+<div class="d-flex justify-content-between align-items-center mt-5">
+  <h1 style="font-family: 'Times New Roman';">Issue Book:</h1>
+  <button
+  type="button"
+  class="btn text-dark  text-white     "
+  style="background-color: #2a2a2a;"
+  data-bs-toggle="modal"
+  data-bs-target="#exampleModal"
+  data-bs-whatever="@mdo"
+>
+  Issue Book
+</button>
+</div>
+<hr>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Issue Book</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form #issueBook="ngForm" (ngSubmit)="onSubmit(issueBook)">
+                  <div class="form-outline mt-3 mb-3">
+                      <label class="form-label text-dark" for="Student">Student ID</label>
+                      <input type="text" id="Student" class="form-control" name="userId" [(ngModel)]="StudentId" required minlength="4" #names="ngModel" />
+                      <div *ngIf="names.invalid" class="invalid-feedback">
+                          <div *ngIf="names.errors?.['required']">Name is required.</div>
+                          <div *ngIf="names.errors?.['minlength']">Name must have at least 4 characters.</div>
+                      </div>
+                  </div>
+
+                  <div class="form-outline mt-3 mb-3">
+                      <label class="form-label text-dark" for="Book">Book ID</label>
+                      <input type="text" id="Book" class="form-control" name="bookId" [(ngModel)]="BookId" required minlength="4" #name="ngModel" />
+                      <div *ngIf="name.invalid" class="invalid-feedback">
+                          <div *ngIf="name.errors?.['required']">Name is required.</div>
+                          <div *ngIf="name.errors?.['minlength']">Name must have at least 4 characters.</div>
+                      </div>
+                  </div>
+
+                  <div class="mb-3">
+                      <label for="issueDate" class="col-form-label">Issue Date</label>
+                      <input type="date" class="form-control" id="issueDate" [(ngModel)]="IssueDate" name="issuedDate" required />
+                  </div>
+                  <div class="mb-3">
+                      <label for="returnDate" class="col-form-label">Return Date</label>
+                      <input type="date" class="form-control" id="returnDate" [(ngModel)]="ReturnDate" name="returnDate" required />
+                  </div>
+                  <button type="submit" class="btn btn-success text-dark w-100">Add</button>
+              </form>
+          </div>
+          
+      </div>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <br>
+  <br>
+  <table class="table table-bordered">
+      <thead class="thead-dark">
+          <tr>
+              <th style="background-color: #893606; color: aliceblue;">Name</th>
+              <th style="background-color: #893606; color: aliceblue;">Book Name</th>
+              <th style="background-color: #893606; color: aliceblue;">Issue Date</th>
+              <th style="background-color: #893606; color: aliceblue;">Return Date</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let issueBook of issuebooks">
+              <td style="font-size: large;">{{ issueBook.name }}</td>
+              <td style="font-size: large;">{{ issueBook.book }}</td>
+              <td style="font-size: large;">{{ issueBook.issuedDate }}</td>
+              <td style="font-size: large;">{{ issueBook.returnDate }}</td>
+          </tr>
+      </tbody>
+  </table>
+</div>

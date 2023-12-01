@@ -1,0 +1,32 @@
+    <br>
+    <br>
+
+
+    <div class="container mt-5">
+        <h2 class="text-center link-offset-3"> Registered Users </h2>
+        <br>
+        <br>
+        <table class="table table-bordered  table-hover ">
+            <thead class="thead-dark">
+                <tr>
+                    <th style="background-color:  #893606; color: aliceblue; font-size: large;">S.No</th>
+                    <th style="background-color:  #893606; color: aliceblue; font-size: large;">Username</th>
+                    <th style="background-color:  #893606; color: aliceblue; font-size: large;">Name</th>
+                    <th style="background-color:  #893606; color: aliceblue; font-size: large;">Registered date</th>
+                </tr>
+                    
+              
+            </thead>
+
+            <tbody *ngFor="let user of users"><tr>
+                <td style="font-size: large;">{{user.id}}</td>
+                <td style="font-size: large;">{{user.username}}</td>
+                <td style="font-size: large;">{{user.name}}</td>
+                <td style="font-size: large;">{{user.createdAt}}</td>
+            
+            </tr>
+
+            </tbody>
+        
+        </table>
+    </div>
