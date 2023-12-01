@@ -65,5 +65,5 @@ Description
 
 Demo Video Url
 🔗 url of demo video
-https://teams.microsoft.com/l/message/19:54d3f53d-c40a-41eb-a27e-4932c84955a1_77c844ad-7ad1-4205-aa50-4c7129244a31@unq.gbl.spaces/1701409376782?context=%7B%22contextType%22%3A%22chat%22%7D
+https://drive.google.com/file/d/15pGEMRoyGZ_7tP-kguUKwoO7i9b8WnjW/view?usp=sharing
  
