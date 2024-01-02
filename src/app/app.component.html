@@ -36,10 +36,10 @@
               <i class="fas fa-clipboard-check"></i>
               <a class="nav-link d-flex align-items-center  " routerLink="/Issuebook" (click)="issueBook()">Issue Books</a> 
             </li>
-            <li class="nav-item d-flex align-items-center px-4 sideBarItem ">
+            <!-- <li class="nav-item d-flex align-items-center px-4 sideBarItem ">
               <i class="fas fa-clipboard"></i>
               <a class="nav-link d-flex align-items-center  " routerLink="/returnBook "(click)="returnBook()">ReturnBook</a> 
-            </li>
+            </li> -->
             <li class="nav-item d-flex align-items-center px-4 sideBarItem  ">
               <i class="fas fa-history"></i>
               <a class="nav-link d-flex align-items-center  " routerLink="/Userhistory" (click)="userHistory()">User History</a>
@@ -51,7 +51,12 @@
             </li>
             <li class="nav-item d-flex align-items-center px-4 sideBarItem  ">
               <i class="fas fa-bell"></i>
-              <a class="nav-link d-flex align-items-center  " routerLink="/notify" (click)="notification()">Notification</a>
+              <a class="nav-link d-flex align-items-center" routerLink="/notify" (click)="notification()">
+                Notification
+                <ng-lottie *ngIf="notifys.length > 0" [options]="options" class="notification"></ng-lottie>
+              </a>
+              
+              
             </li>
           
          
@@ -70,11 +75,11 @@
           <ul class="nav flex-column">
            
            
-            <li class="nav-item d-flex align-items-center px-4 sideBarItem   ">
+            <li class="nav-item d-flex align-items-center px-4 sideBarItem   " routerLink="/" >
               <i class="fas fa-book-open"></i>
               <a class="nav-link d-flex align-items-center  " routerLink="/" (click)="studentBook()">Books</a>
             </li>
-            <li class="nav-item d-flex align-items-center px-4 sideBarItem    ">
+            <li class="nav-item d-flex align-items-center px-4 sideBarItem    " routerLink="/profile">
               <i class="fas fa-house-user"></i>
               <a class="nav-link d-flex align-items-center    " routerLink="/profile" (click)="studentProfile()" > Profile </a>
             </li>
@@ -86,10 +91,7 @@
 
            
           
-            <li class="nav-item d-flex align-items-center px-4 sideBarItem    ">
-              <i class="fas fa-key"></i>
-              <a class="nav-link d-flex align-items-center    ">Change Password</a>
-            </li>
+           
           </ul>
         </div>
       </div>

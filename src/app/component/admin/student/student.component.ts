@@ -10,6 +10,7 @@ import { RegisteredUser } from 'src/app/model/registered-user';
 })
 export class StudentComponent implements OnInit {
   users:RegisteredUser[]=[]
+  Sno:number=1;
   constructor(private studentservice:StudentService){}
   ngOnInit(): void {
     this.studentservice.getUsers().subscribe({

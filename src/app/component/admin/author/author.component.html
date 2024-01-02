@@ -67,8 +67,8 @@
             </tr>
         </thead>
         <tbody class="table-center">
-          <tr *ngFor=" let author of authors"> 
-            <td  style="font-size: large;">{{author.id}}</td>
+          <tr *ngFor=" let author of authors let i = index"> 
+            <td  style="font-size: large;">{{Sno+i}}</td>
             <td style="font-size: large;" >{{author.author}}</td>
            
               <td><button type="button" class="btn btn-dark text-white w-50   " data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo" 

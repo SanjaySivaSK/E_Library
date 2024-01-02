@@ -18,11 +18,11 @@
               
             </thead>
 
-            <tbody *ngFor="let user of users"><tr>
-                <td style="font-size: large;">{{user.id}}</td>
+            <tbody *ngFor="let user of users let i =index"><tr>
+                <td style="font-size: large;">{{Sno+i}}</td>
                 <td style="font-size: large;">{{user.username}}</td>
                 <td style="font-size: large;">{{user.name}}</td>
-                <td style="font-size: large;">{{user.createdAt}}</td>
+                <td style="font-size: large;">{{user.createdAt?(user.createdAt| date :"MMM yyyy"):"Not specified"}}</td>
             
             </tr>
 

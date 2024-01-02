@@ -7,7 +7,6 @@ import { CategoryService } from 'src/app/service/category.service';
 import { AuthorService } from 'src/app/service/author.service';
 import { Author } from 'src/app/model/author';
 import { NgForm } from '@angular/forms';
-import { BookItem } from 'src/app/model/book-item';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -18,21 +17,24 @@ export class BookComponent implements OnInit {
   editId = 0;
   books: Book[] = [];
   categories: Category[] = [];
-  author: Author[] = [];
+  authors: Author[] = []; // Corrected the variable name from 'author' to 'authors'
   id: number = 0;
   BookName: string = '';
   category: number = 1;
   Author: number = 1;
   description: string = '';
-  file = '';
-
+  file: any = null; // Changed the type to 'any'
+ Sno:number=1;
   constructor(
     private bookservice: BookService,
     private categoryservice: CategoryService,
-    private authorservice: AuthorService,private toastr :ToastrService
+    private authorservice: AuthorService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
+  
+
     this.categoryservice.getCategories().subscribe({
       next: (response: AppResponse) => {
         if (response && response.data) {
@@ -45,13 +47,12 @@ export class BookComponent implements OnInit {
       error: (err) => {
         console.log('An error occurred:', err);
       },
-      complete: () => console.log('There are no more actions happening.'),
     });
     this.authorservice.getAuthors().subscribe({
       next: (response: AppResponse) => {
         if (response && response.data) {
-          this.author = response.data;
-          console.log(this.categories);
+          this.authors = response.data; // Corrected the variable name from 'author' to 'authors'
+          console.log(this.authors);
         } else {
           console.error('Invalid API response format:', response);
         }
@@ -59,13 +60,13 @@ export class BookComponent implements OnInit {
       error: (err) => {
         console.log('An error occurred:', err);
       },
-      complete: () => console.log('There are no more actions happening.'),
     });
 
     this.bookservice.getbooks().subscribe({
       next: (response: AppResponse) => {
         if (response && response.data) {
           this.books = response.data;
+      
           console.log(this.books);
         } else {
           console.error('Invalid API response format:', response);
@@ -74,67 +75,70 @@ export class BookComponent implements OnInit {
       error: (err) => {
         console.log('An error occurred:', err);
       },
-      complete: () => console.log('There are no more actions happening.'),
     });
   }
+
   onSubmit(BookForm: NgForm): void {
-  console.log(BookForm.value)
+    console.log(BookForm.value);
 
-    const formdata =new FormData()
-    formdata.append('photo',this.file);
-    formdata.append('book',BookForm.value.book);
-    formdata.append('categoryId',BookForm.value.categoryId)
-    formdata.append('authorId',BookForm.value.authorId)
-    formdata.append('description',BookForm.value.description)
+    const formData = new FormData();
+    formData.append('photo', this.file);
+    formData.append('book', BookForm.value.book);
+    formData.append('categoryId', BookForm.value.categoryId);
+    formData.append('authorId', BookForm.value.authorId);
+    formData.append('description', BookForm.value.description);
 
-console.log(formdata)
-   
-      this.bookservice.addBooks(formdata).subscribe({
+    console.log(formData);
+
+    if (this.editId === 0) {
+      this.bookservice.addBooks(formData).subscribe({
         next: (response) => {
-          (this.books = response.data), BookForm.reset();
-          this.toastr.success("Book added Sucessfully")
+          this.books = response.data;
+          BookForm.reset();
+          this.toastr.success('Book added successfully');
         },
         error: (err) => {
           console.error('An error occurred while adding the book', err);
         },
         complete: () => {
-          console.log('Author addition complete.');
+          console.log('Book addition complete.');
         },
       });
-  //   } else {
-      
-  //     this.bookservice
-  //       .updateBooks({
-  //         id: this.id,
-  //         book: this.BookName,
-  //         categoryId: this.category,
-  //         authorId: this.Author,
-  //         description: this.description,
-  //       })
-  //       .subscribe({
-  //         next: (response) => {
-  //           (this.books = response.data), BookForm.reset();
-  //           this.editId = 0;
-  //         },
-  //         error: (err) => {
-  //           console.error('An error occurred while adding the book', err);
-  //         },
-  //         complete: () => {
-  //           console.log('BooK addition complete.');
-  //         },
-  //       });
-  //   }
-  // }
-  // editBook(book: Book) {
-  //   (this.id = book.id),
-  //     (this.BookName = book.book),
-  //     (this.category = book.category.id);
-  //   this.Author = book.author.id;
-  //   this.description = book.description;
-  //   this.editId = 1;
-  // }}
+    } else {
+      this.bookservice
+        .updateBooks({
+          id: this.id,
+          book: this.BookName,
+          categoryId: this.category,
+          authorId: this.Author,
+          description: this.description,
+        })
+        .subscribe({
+          next: (response) => {
+            this.books = response.data;
+            BookForm.reset();
+            this.editId = 0;
+          },
+          error: (err) => {
+            console.error('An error occurred while updating the book', err);
+          },
+          complete: () => {
+            console.log('Book update complete.');
+          },
+        });
     }
-  
+  }
+
+  editBook(book: Book) {
+    this.id = book.id;
+    this.BookName = book.book;
+    this.category = book.category.id;
+    this.Author = book.author.id;
+    this.description = book.description;
+    this.editId = 1;
+    console.log(book)
+  }
+
   deleteBook(id: number): void {
     console.log(id);
     this.bookservice.deleteBooks(id).subscribe({
@@ -142,19 +146,19 @@ console.log(formdata)
         this.books = response.data;
       },
       error: (err) => {
-        console.error('an error occured while deleting the book', err);
+        console.error('An error occurred while deleting the book', err);
       },
       complete: () => {
-        console.log('book is delete');
+        console.log('Book is deleted.');
       },
     });
   }
+
   onFileChange(event: any) {
     const fileInput = event.target;
     if (fileInput && fileInput.files.length > 0) {
       this.file = fileInput.files[0];
-
-      // console.log('Selected file',this.file);
+      // console.log('Selected file', this.file);
     }
   }
 }

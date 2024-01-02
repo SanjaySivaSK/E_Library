@@ -61,6 +61,8 @@
           </div>
           <br />
           <button
+          data-bs-dismiss="modal"
+          aria-label="Close"
             type="submit"
             style="font-size: large; font-weight: 500"
             class="btn btn-success text-dark w-100"
@@ -88,8 +90,8 @@
           </tr>
         </thead>
         <tbody class="table-center">
-          <tr *ngFor="let category of categories">
-            <td style="font-size: large">{{ category.id }}</td>
+          <tr *ngFor="let category of categories let i = index">
+            <td style="font-size: large">{{Sno +i}}</td>
             <td style="font-size: large">{{ category.category }}</td>
             <td>
               <button

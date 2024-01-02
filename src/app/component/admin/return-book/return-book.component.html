@@ -14,19 +14,16 @@
             <tr>
                 <th style="background-color: #893606; color: aliceblue;">Name</th>
                 <th style="background-color: #893606; color: aliceblue;">Book Name</th>
-                <th style="background-color: #893606; color: aliceblue;">Return or Return Not</th>
+                <th style="background-color: #893606; color: aliceblue;">Status</th>
                 
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let returnBook of returnBooks">
+
                 <td style="font-size: large;">{{ returnBook.appUser.name }}</td>
                 <td style="font-size: large;">{{ returnBook.book.book }}</td>
-                <td style="font-size: large;">
-                  
-                    <span *ngIf="returnBook.returned; else notReturned">Returned</span>
-                    <ng-template #notReturned>Not Returned</ng-template>
-                </td>
+                <td style="font-size: large;">{{ returnBook.returned ? "Returned" : "NotReturned" }}</td>
             </tr>
             
         </tbody>

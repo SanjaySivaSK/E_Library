@@ -3,6 +3,7 @@ import { AuthService } from './service/auth.service';
 import { AnimationOptions } from 'ngx-lottie';
 import { LoaderService } from './service/loader.service';
 import { Router } from '@angular/router';
+import { NotificationService } from './service/notification.service';
 
 @Component({
   selector: 'app-root',
@@ -12,18 +13,18 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
 
   options: AnimationOptions = {
-    path: '/assets/loading.json',
-    rendererSettings: {
-      className: 'lottie-loader',
-    },
+    path: '/assets/Notification.json',
+   
+   
   };
 
   isAdmin: boolean = false;
   isLoggedIn: boolean = false;
+  notifys:any=[]
 
   constructor(
     private authService: AuthService,
-    public loaderService: LoaderService,private router:Router
+    public loaderService: LoaderService,private router:Router,private notifications:NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +35,12 @@ export class AppComponent implements OnInit {
     this.authService.isLoggedIn$.subscribe((isLoggedIn) => {
       this.isLoggedIn = isLoggedIn;
     });
+    this.notifications.getNotification().subscribe({
+      next:(resp)=>{
+      this.notifys=resp.data
+      console.log(this.notifys)
+      }
+    })
   }
 
   logout(): void {
@@ -79,4 +86,5 @@ this.router.navigate(['/notify']),{replaceUrl:true}
     this.router.navigate(['/returnBook']),{replaceUrl:true}
 
   }
+  
 }

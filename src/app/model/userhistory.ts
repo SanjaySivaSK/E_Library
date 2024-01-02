@@ -5,4 +5,5 @@ export interface Userhistory {
     issuedDate: string;
     returnDate: string;
     fineamount?:number;
+    returned:boolean;
 }

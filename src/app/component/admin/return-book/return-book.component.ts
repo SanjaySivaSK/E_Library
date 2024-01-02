@@ -14,6 +14,8 @@ export class ReturnBookComponent implements OnInit {
       next: (Response) => {
         console.log(Response);
         this.returnBooks = Response.data;
+        console.log(this.returnBooks);
+        
       },
     });
   }

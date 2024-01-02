@@ -152,10 +152,10 @@ body {
   color: var(--primary-300);
 }
 
-.loader {
+/* .loader {
   position: absolute;
-  min-height: 100vh;
-  min-width: 100vw;
+  min-height: 120vh;
+  min-width: 120vw;
   opacity: 0.5;
   background-color: #000;
   z-index: 99;
@@ -168,6 +168,13 @@ body {
   height: 150px !important;
   position: absolute;
   top: 40%;
+  left: 45%;
+} */
+.Nodata{
+  width: 500px !important;
+  height: 450px !important;
+  position: absolute;
+  top: 30%;
   left: 45%;
 }
 #categorycard{
@@ -266,4 +273,10 @@ div.register::before {
 
 .large-font {
   font-size: large;
+}
+.notification {
+  width: 80px !important;
+  height: 30px !important;
+  
+
 }

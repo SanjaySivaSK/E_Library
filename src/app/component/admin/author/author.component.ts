@@ -16,6 +16,7 @@ export class AuthorComponent implements OnInit {
   authors: Author[] = [];
   editId = 0;
   id = 0;
+  Sno:number=1
 
   ngOnInit(): void {
     this.authorservice.getAuthors().subscribe({

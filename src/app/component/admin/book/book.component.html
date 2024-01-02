@@ -90,7 +90,7 @@
                 name="authorId"
               >
                 <option value="" disabled selected>Select an author</option>
-                <option *ngFor="let author of author" value="{{ author.id }}">
+                <option *ngFor="let author of authors" value="{{ author.id }}">
                   {{ author.author }}
                 </option>
                 =
@@ -154,27 +154,28 @@
         </tr>
       </thead>
 
-      <tbody>
-        <tr *ngFor="let book of books">
-          <td style="font-size: large">{{ book.id }}</td>
+<tbody>
+        <tr *ngFor="let book of books let i = index">
+          <td style="font-size: large">{{Sno+i}}</td>
           <td style="font-size: large">{{ book.book }}</td>
           <td style="font-size: large">{{ book.author.author }}</td>
           <td style="font-size: large">{{ book.category.category }}</td>
           <td class="table-center"><button
             type="button"
-            class="btn btn-dark text-white w-50"
+            class="btn btn-dark text-white btn-block"
             data-bs-toggle="modal"
             data-bs-target="#exampleModal"
             data-bs-whatever="@mdo"
+            (click)="editBook(book)"
            
+                 
            
-           
-          > <i class="fas fa-edit"></i>
+          > <i class="fas fa-edit"  ></i>
           Edit
           </button></td>
 
         <td>
-            <button class="btn btn-danger text-white w-50"    style="background-color: #ff5d5d; color: aliceblue" (click)="deleteBook(book.id)">
+            <button class="btn btn-danger text-white btn-block"    style="background-color: #ff5d5d; color: aliceblue" (click)="deleteBook(book.id)">
               <i class="fas fa-trash-alt"></i> Delete
             </button>
           </td> 

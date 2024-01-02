@@ -15,6 +15,7 @@ export class UserhistoryComponent implements OnInit {
   BookName:string=""
   StudentName:string=""
 issuebooks:Userhistory[]=[]
+Sno:number=1
 
 ngOnInit(): void {
   this.userhistoryservice.getUsersHistory().subscribe({

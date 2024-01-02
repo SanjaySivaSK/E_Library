@@ -7,7 +7,7 @@
 <table class="table table-hover">
   <thead>
     <tr>
-     
+      <th scope="col" style="background-color: #893606; color: aliceblue">S.No</th>
       <th scope="col" style="background-color: #893606; color: aliceblue">Book Code</th>
       <th scope="col"style="background-color: #893606; color: aliceblue"> Book Name</th>
       <th scope="col"style="background-color: #893606; color: aliceblue"> User Code</th>
@@ -16,7 +16,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let notify of notifys">
+    <tr *ngFor="let notify of notifys let i=index">
+      <td>{{Sno+i}}</td>
       <td>{{ notify.book.id}}</td>
       <td>{{notify.book.book}}</td>
       <td>{{notify.appUser.id}}</td>

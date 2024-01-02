@@ -16,6 +16,7 @@ export class CategoryComponent implements OnInit {
   id: number = 0;
   category: string = '';
   categories: Category[] = [];
+  Sno:number=1
 
   ngOnInit(): void {
     this.categoryservice.getCategories().subscribe({

@@ -27,19 +27,22 @@
     <table class="table table-bordered  ">
         <thead class="thead-dark">
             <tr>
-                
+              <th  style="background-color:  #893606; color: aliceblue;"> S.No</th>
                 <th  style="background-color:  #893606; color: aliceblue;"> Name</th>
                 <th  style="background-color:  #893606; color: aliceblue;"> BookName  </th>
                 <th  style="background-color:  #893606; color: aliceblue;"> Issue Date </th>
                 <th  style="background-color:  #893606; color: aliceblue;"> Return Date </th>
+                <th  style="background-color:  #893606; color: aliceblue;"> Status </th>
             </tr>
         </thead>
-        <tr *ngFor="let issueBook of issuebooks">
-         
+        <tr *ngFor="let issueBook of issuebooks let i=index">
+          <td style="font-size: large;">{{Sno+i}}</td>
             <td style="font-size: large;">{{issueBook.name}}</td>
             <td style="font-size: large;">{{issueBook.book}}</td>
-            <td style="font-size: large;">{{issueBook.issuedDate}}</td>
-            <td style="font-size: large;"> {{issueBook.returnDate}}  </td>
+            <td style="font-size: large;">{{ issueBook.issuedDate?(issueBook.issuedDate| date :"dd-MM-yyyy"):"Not specified" }}</td>
+            <td style="font-size: large;">{{ issueBook.returnDate?(issueBook.returnDate| date :"dd-MM-yyyy"):"Not specified" }}</td>
+             <td style="font-size: large;">{{ issueBook.returned ? "Returned" : "NotReturned" }}</td>
+
          
         </tr>
     </table>
