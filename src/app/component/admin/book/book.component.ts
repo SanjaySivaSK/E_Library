@@ -14,6 +14,10 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './book.component.html',
 })
 export class BookComponent implements OnInit {
+close(form:NgForm) {
+  form.reset()
+
+}
   editId = 0;
   books: Book[] = [];
   categories: Category[] = [];
@@ -82,15 +86,13 @@ export class BookComponent implements OnInit {
     console.log(BookForm.value);
 
     const formData = new FormData();
-    formData.append('photo', this.file);
     formData.append('book', BookForm.value.book);
     formData.append('categoryId', BookForm.value.categoryId);
     formData.append('authorId', BookForm.value.authorId);
     formData.append('description', BookForm.value.description);
 
-    console.log(formData);
-
     if (this.editId === 0) {
+      formData.append('photo', this.file);
       this.bookservice.addBooks(formData).subscribe({
         next: (response) => {
           this.books = response.data;
@@ -105,27 +107,21 @@ export class BookComponent implements OnInit {
         },
       });
     } else {
-      this.bookservice
-        .updateBooks({
-          id: this.id,
-          book: this.BookName,
-          categoryId: this.category,
-          authorId: this.Author,
-          description: this.description,
-        })
-        .subscribe({
-          next: (response) => {
-            this.books = response.data;
-            BookForm.reset();
-            this.editId = 0;
-          },
-          error: (err) => {
-            console.error('An error occurred while updating the book', err);
-          },
-          complete: () => {
-            console.log('Book update complete.');
-          },
-        });
+      formData.append('id', this.id.toString());
+      this.bookservice.updateBooks(formData).subscribe({
+        next: (response) => {
+          this.books = response.data;
+          BookForm.reset();
+          this.editId = 0;
+          this.toastr.success('Book updated successfully');
+        },
+        error: (err) => {
+          console.error('An error occurred while updating the book', err);
+        },
+        complete: () => {
+          console.log('Book update complete.');
+        },
+      });
     }
   }
 
@@ -144,6 +140,7 @@ export class BookComponent implements OnInit {
     this.bookservice.deleteBooks(id).subscribe({
       next: (response) => {
         this.books = response.data;
+        this.ngOnInit()
       },
       error: (err) => {
         console.error('An error occurred while deleting the book', err);

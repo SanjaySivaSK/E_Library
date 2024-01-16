@@ -4,6 +4,6 @@ export interface Userhistory {
     book: string;
     issuedDate: string;
     returnDate: string;
-    fineamount?:number;
+    fineAmount:number;
     returned:boolean;
 }

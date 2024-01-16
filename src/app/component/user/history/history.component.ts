@@ -56,10 +56,15 @@ export class HistoryComponent implements OnInit {
 
   returnBook(ids: number): void {
     console.log(ids);
+      var amt=this.fineAmount;
 
-    this.returnservice.returnBook(ids).subscribe({
-      next: (response) => {},
-    });
+ 
+      this.returnservice.returnBook(ids,amt).subscribe({
+        next: (response) => {},
+      });
+    
+
+   
   }
 
   // onSubmit(categoryForm: NgForm): void {
@@ -96,4 +101,5 @@ export class HistoryComponent implements OnInit {
     const finePerDay = 2; // You can adjust this value
     this.fineAmount = differenceInDays > 0 ? differenceInDays * finePerDay : 0;
   }
+
 }

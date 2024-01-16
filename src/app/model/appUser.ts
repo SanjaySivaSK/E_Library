@@ -3,4 +3,5 @@ export interface AppUser {
   username: String;
   password: String;
   role: String;
+  name:String
 }

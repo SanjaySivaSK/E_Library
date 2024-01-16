@@ -21,17 +21,16 @@ export class BookService {
       formdata
     );
   }
-  updateBooks(book: BookItem): Observable<AppResponse> {
+  updateBooks(formdata: FormData): Observable<AppResponse> {
     return this.http.put<AppResponse>(
-      'http://localhost:8080/api/admin/book',
-      book
+      'http://localhost:8080/api/admin/book/update',
+      formdata
     );
   }
   deleteBooks(id: number): Observable<AppResponse> {
     const url = `http://localhost:8080/api/admin/book/${id}`;
-    return this.http.delete<AppResponse>(url);
+    return this.http.put<AppResponse>(url,null);
   }
  
-  
 
 }

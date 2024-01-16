@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-// import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import player from 'lottie-web';
@@ -55,17 +55,20 @@ export function playerFactory() {
     ReturnBookComponent,
    
    
+   
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+  
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     LottieModule.forRoot({ player: playerFactory }),
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
+  
   ],
   providers: [
     DatePipe, {

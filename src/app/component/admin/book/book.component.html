@@ -29,6 +29,7 @@
             class="btn-close"
             data-bs-dismiss="modal"
             aria-label="Close"
+            (click)="close(ngBook)"
           ></button>
         </div>
         <div class="modal-body">
@@ -111,7 +112,7 @@
                   style="height: 100px"
                   name="description"
                 />
-                <div class="form-outline mb-3">
+                <div class="form-outline mb-3" *ngIf="editId==0">
                   <label class="form-label" for="customFile" style="font-size: large">Choose Image</label>
                   <input
                     type="file"

@@ -17,13 +17,15 @@
  
     Sno:number=1
      currentDate = new Date();
+      
+     
      
      year = this.currentDate.getFullYear();
      month = String(this.currentDate.getMonth() + 1).padStart(2, '0');
      day = String(this.currentDate.getDate()).padStart(2, '0');
     
      issuedDate = `${this.day}-${this.month}-${this.year}`;
-     ReturnDate= `${(this.currentDate.getDay())+2}-${this.month}-${this.year}`; 
+     ReturnDate= `${(this.currentDate.getDate()+2)}-${this.month}-${this.year}`; 
 
     
   issuebooks:Issuebook[]=[]

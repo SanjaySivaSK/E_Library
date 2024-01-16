@@ -13,6 +13,7 @@ export interface  Book {
     id:number,
     author:string;
   },
+  photo:string;
 
 }
 

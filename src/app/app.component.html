@@ -73,7 +73,10 @@
       <div class="bg-body-tertiary h-100" tabindex="-1">
         <div class="d-flex flex-column p-0 pt-3 overflow-y-auto">
           <ul class="nav flex-column">
-           
+            <li class="nav-item d-flex align-items-center px-4 sideBarItem   " >
+              <i class="fas fa-user"></i>
+              <a class="nav-link d-flex align-items-center "> Welcome {{UserName}}</a>
+            </li>
            
             <li class="nav-item d-flex align-items-center px-4 sideBarItem   " routerLink="/" >
               <i class="fas fa-book-open"></i>
@@ -102,6 +105,6 @@
 </div>
 
 
-<div *ngIf="loaderService.isLoading | async" class="loader">
+<!-- <div *ngIf="loaderService.isLoading | async" class="loader">
   <ng-lottie [options]="options"></ng-lottie>
-</div>
+</div> -->

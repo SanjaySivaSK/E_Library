@@ -33,6 +33,8 @@
                 <th  style="background-color:  #893606; color: aliceblue;"> Issue Date </th>
                 <th  style="background-color:  #893606; color: aliceblue;"> Return Date </th>
                 <th  style="background-color:  #893606; color: aliceblue;"> Status </th>
+                <th  style="background-color:  #893606; color: aliceblue;"> Fine Amount </th>
+
             </tr>
         </thead>
         <tr *ngFor="let issueBook of issuebooks let i=index">
@@ -42,6 +44,7 @@
             <td style="font-size: large;">{{ issueBook.issuedDate?(issueBook.issuedDate| date :"dd-MM-yyyy"):"Not specified" }}</td>
             <td style="font-size: large;">{{ issueBook.returnDate?(issueBook.returnDate| date :"dd-MM-yyyy"):"Not specified" }}</td>
              <td style="font-size: large;">{{ issueBook.returned ? "Returned" : "NotReturned" }}</td>
+             <td style="font-size: large;">{{issueBook.fineAmount}}</td>
 
          
         </tr>

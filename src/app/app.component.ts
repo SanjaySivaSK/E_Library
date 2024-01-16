@@ -4,6 +4,7 @@ import { AnimationOptions } from 'ngx-lottie';
 import { LoaderService } from './service/loader.service';
 import { Router } from '@angular/router';
 import { NotificationService } from './service/notification.service';
+import { StorageService } from './service/storage.service';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +18,7 @@ export class AppComponent implements OnInit {
    
    
   };
+  UserName:String=""
 
   isAdmin: boolean = false;
   isLoggedIn: boolean = false;
@@ -24,7 +26,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    public loaderService: LoaderService,private router:Router,private notifications:NotificationService
+    public loaderService: LoaderService,private router:Router,private notifications:NotificationService,private storageservice:StorageService
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +43,7 @@ export class AppComponent implements OnInit {
       console.log(this.notifys)
       }
     })
+      this.UserName=this.storageservice.getLoggedInUser().username
   }
 
   logout(): void {
