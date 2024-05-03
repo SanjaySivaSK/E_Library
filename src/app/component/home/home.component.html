@@ -119,8 +119,19 @@
               >Description:{{ Description }}</label
             >
             <br />
+            <label
+            for="description"
+            class="col-form-label"
+            style="font-size: large"
+            > No of Books - {{ Stock }}</label
+          >
+          
             <button
               class="btn btn-danger text-white w-100"
+
+             
+              data-bs-dismiss="modal"
+              aria-label="Close"
               (click)="requestBook(id)"
             >
               Request

@@ -56,7 +56,7 @@
   </div>
 </div>
 
-<div class="container mt-5">
+<div class="container mt-3">
   <br>
   <br>
   <table class="table table-bordered">
@@ -75,8 +75,8 @@
             <td style="font-size: large;">{{ Sno +i }}</td>
               <td style="font-size: large;">{{ issueBook.name }}</td>
               <td style="font-size: large;">{{ issueBook.book }}</td>
-              <td style="font-size: large;">{{ issueBook.issuedDate?(issueBook.issuedDate| date :"dd-MM-yyyy"):"Not specified" }}</td>
-              <td style="font-size: large;">{{ issueBook.returnDate?(issueBook.returnDate| date :"dd-MM-yyyy"):"Not specified" }}</td>
+              <td style="font-size: large;">{{ issueBook.issuedDate}}</td>
+              <td style="font-size: large;">{{ issueBook.returnDate}}</td>
           </tr>
       </tbody>
   </table>

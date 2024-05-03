@@ -29,6 +29,7 @@ close(form:NgForm) {
   description: string = '';
   file: any = null; // Changed the type to 'any'
  Sno:number=1;
+ stock:number=0;
   constructor(
     private bookservice: BookService,
     private categoryservice: CategoryService,
@@ -88,6 +89,7 @@ close(form:NgForm) {
     const formData = new FormData();
     formData.append('book', BookForm.value.book);
     formData.append('categoryId', BookForm.value.categoryId);
+    formData.append('stock', BookForm.value.stock);
     formData.append('authorId', BookForm.value.authorId);
     formData.append('description', BookForm.value.description);
 
@@ -150,6 +152,9 @@ close(form:NgForm) {
       },
     });
   }
+
+
+  
 
   onFileChange(event: any) {
     const fileInput = event.target;

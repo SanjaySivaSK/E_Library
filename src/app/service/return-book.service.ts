@@ -15,11 +15,11 @@ export class ReturnBookService {
       'http://localhost:8080/api/admin/return/returnedBook'
     );
   }
-  returnBook(id: number,amt:number|null) {
+  returnBook(id: number,amt:number|null,BookId:number|null|undefined) {
     console.log(id);
     console.log(amt)
 
-    const url = `http://localhost:8080/api/user-book/${id}/update/${amt}`;
+    const url = `http://localhost:8080/api/user-book/${id}/update/${amt}/Book/${BookId}`;
     return this.http.put<AppResponse>(url, null);
   }
 }

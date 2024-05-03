@@ -3,6 +3,7 @@ import { AuthService } from './service/auth.service';
 import { AnimationOptions } from 'ngx-lottie';
 import { LoaderService } from './service/loader.service';
 import { Router } from '@angular/router';
+
 import { NotificationService } from './service/notification.service';
 import { StorageService } from './service/storage.service';
 
@@ -22,7 +23,8 @@ export class AppComponent implements OnInit {
 
   isAdmin: boolean = false;
   isLoggedIn: boolean = false;
-  notifys:any=[]
+  NotifyCount: number = 0;
+  notifys: any[] = [];
 
   constructor(
     private authService: AuthService,
@@ -30,6 +32,7 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+   
     this.authService.isAdmin$.subscribe((isAdmin) => {
       this.isAdmin = isAdmin;
     });
@@ -40,11 +43,20 @@ export class AppComponent implements OnInit {
     this.notifications.getNotification().subscribe({
       next:(resp)=>{
       this.notifys=resp.data
+      this.NotifyCount=this.notifys.length
+      console.log(this.NotifyCount);
+      
       console.log(this.notifys)
+      // this.showMessage(this.NotifyCount)
       }
     })
       this.UserName=this.storageservice.getLoggedInUser().username
+      console.log(this.UserName);
+      
+      
+      
   }
+  
 
   logout(): void {
     this.authService.logout();

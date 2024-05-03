@@ -1,16 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+
 import { BookService } from 'src/app/service/book.service';
 import { ToastrService } from 'ngx-toastr';
 import { NotificationService } from 'src/app/service/notification.service';
 import { StorageService } from 'src/app/service/storage.service';
 import { AppUser } from 'src/app/model/appUser';
+import { Router } from '@angular/router';
 import { Book } from 'src/app/model/book';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
+  
   books: Book[] = [];
   filteredBooks: Book[] = [];
 
@@ -19,18 +23,25 @@ export class HomeComponent implements OnInit {
   CategoryName: string = '';
   AuthorName: string = '';
   Description: string = '';
+  Stock:number=0;
   UserName:String=""
+  Notification:any[]=[]
 
   searchQuery: string = '';
 
   constructor(
     private bookservice: BookService,
-    private toastr: ToastrService,
     private notification: NotificationService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
+    // this.showMessage()
+    
+        
+        
+    
     this.bookservice.getbooks().subscribe({
       next: (response) => {
         this.books = response.data;
@@ -44,6 +55,46 @@ export class HomeComponent implements OnInit {
       },
     });
     this.UserName=this.storageService.getLoggedInUser().username  
+
+    let userId = this.storageService.getLoggedInUser().id;
+    let showMessage = true; // Flag to track whether to show the Swal message
+    
+    this.notification.GetDeclineBook(userId).subscribe({
+      next: (response) => {
+        let notifications: any[] = response.data;
+    
+        for (let notification of notifications) {
+          console.log(notification.decline);
+    
+          if (notification.decline && showMessage) {
+            // Handle the case where the book is declined
+            Swal.fire({
+              title: 'Book Declined',
+              text: `The book ${notification.book.book} was declined.`,
+              icon: 'error',
+              reverseButtons: true,
+            }).then((result) => {
+              if (result.isConfirmed) {
+
+                this.notification.Accept(notification.id).subscribe({
+                  next:(resp)=>{
+                        "accept"
+                  }
+                }) 
+                console.log(notification.id)
+               
+
+
+              }
+            });
+          } 
+        }
+      },
+      error: (error) => {
+        console.error('An error occurred:', error);
+      },
+    });
+    
   }
 
   onSearch() {
@@ -59,6 +110,8 @@ export class HomeComponent implements OnInit {
     this.CategoryName = bookshow.category.category;
     this.bookName = bookshow.book;
     this.Description = bookshow.description;
+    this.Stock=bookshow.stock
+
   }
 
   requestBook(id: number) {
@@ -73,5 +126,22 @@ export class HomeComponent implements OnInit {
         console.log("success");
       },
     });
+    console.log(rBook);
   }
-}
+
+  showMessage() {
+  
+    
+   
+      Swal.fire({
+        title: 'Chief, You got a message!',
+        icon: 'info',
+        reverseButtons: true,
+      }).then((result) => {
+        if (result.isConfirmed) {
+         
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          Swal.fire('Cancelled', 'Your action was cancelled', 'error');
+        }
+      });
+    } }

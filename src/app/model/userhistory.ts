@@ -6,4 +6,6 @@ export interface Userhistory {
     returnDate: string;
     fineAmount:number;
     returned:boolean;
+    renewal:boolean;
+    bookId?:number;
 }

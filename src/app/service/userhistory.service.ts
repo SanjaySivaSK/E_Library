@@ -11,6 +11,7 @@ import { AppUser } from '../model/appUser';
   providedIn: 'root'
 })
 export class UserhistoryService {
+  
 
   constructor(private http: HttpClient ,private storageservice:StorageService) { }
   getUsersHistory(): Observable<AppResponse> {
@@ -24,6 +25,22 @@ getUserHistory(): Observable<AppResponse> {
     "http://localhost:8080/api/user-book/"+user.id
   );
 }   
+
+renewalBook(id:number){
+  console.log(id);
+    
+    const url = `http://localhost:8080/api/user-book/Renewal/${id}`;
+    return this.http.put<AppResponse>(url, null);
+
+
+}
+adminRenewalBook(renewalBook:any):Observable<AppResponse>{
+    return this.http.put<AppResponse>('http://localhost:8080/api/admin/user-history/return-book ',
+    renewalBook)
+  
+  
+
+}
 }
 
 

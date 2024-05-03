@@ -51,6 +51,7 @@
                 name="book"
               />
             </div>
+
             <div class="mb-3">
               <label
                 for="category-select"
@@ -112,6 +113,20 @@
                   style="height: 100px"
                   name="description"
                 />
+                <label
+                for="book-name"
+                class="col-form-label"
+                style="font-size: large"
+                >Stock</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                id="Stock"
+                [(ngModel)]="stock"
+                name="stock"
+              />
+            </div>
                 <div class="form-outline mb-3" *ngIf="editId==0">
                   <label class="form-label" for="customFile" style="font-size: large">Choose Image</label>
                   <input
@@ -124,7 +139,7 @@
                   />
                 </div>
               </div>
-            </div>
+            
             <div class="modal-footer">
               <button
                 type="submit"
@@ -141,7 +156,7 @@
     </div>
   </div>
 
-  <div class="container mt-5">
+  <div class="container mt-3">
     <table class="table  table-hover">
       <thead class="thead-dark">
         <tr>
@@ -149,6 +164,7 @@
           <th style="background-color: #893606; color: aliceblue">BookName</th>
           <th style="background-color: #893606; color: aliceblue">Author</th>
           <th style="background-color: #893606; color: aliceblue">Category</th>
+          <th style="background-color: #893606; color: aliceblue">Stock</th>
           <th style="background-color: #893606; color: aliceblue">Edit</th>
           <th style="background-color: #893606; color: aliceblue">Delete</th>
 
@@ -161,6 +177,7 @@
           <td style="font-size: large">{{ book.book }}</td>
           <td style="font-size: large">{{ book.author.author }}</td>
           <td style="font-size: large">{{ book.category.category }}</td>
+          <td style="font-size: large">{{ book.stock==0 ?"No Stock":book.stock}}</td>
           <td class="table-center"><button
             type="button"
             class="btn btn-dark text-white btn-block"

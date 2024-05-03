@@ -14,6 +14,7 @@ export interface  Book {
     author:string;
   },
   photo:string;
+  stock:number;
 
 }
 

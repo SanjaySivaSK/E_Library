@@ -1,29 +1,148 @@
+  <div class="d-flex justify-content-between align-items-center mt-5">
+    <h1 style="font-family: 'Times New Roman';">Notifications</h1>
+  </div>
+  <hr>
 
-<div class="d-flex justify-content-between align-items-center mt mt-5">
-  <h1 Style="font-family: 'Times New Roman';">Notifications</h1>
+  <div class="d-flex">
+    <!-- First Table (col-6) -->
+  
+    <div class="col-6 me-2">
+      <h5>Requests</h5>
+      <table class="table table-hover" *ngIf="notifys.length > 0" >
+        <thead>
+          <tr>
+            <th scope="col" style="background-color: #893606; color: aliceblue">S.No</th>
+            <th scope="col" style="background-color: #893606; color: aliceblue">Book Code</th>
+            <th scope="col" style="background-color: #893606; color: aliceblue">Book Name</th>
+            <th scope="col" style="background-color: #893606; color: aliceblue">User Code</th>
+            <th scope="col" style="background-color: #893606; color: aliceblue">User Name</th>
+            <th scope="col" style="background-color: #893606; color: aliceblue">Issue</th>
+            <th scope="col" style="background-color: #893606; color: aliceblue">Decline</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let notify of notifys; let i = index">
+            <td>{{ Sno + i }}</td>
+            <td>{{ notify.book.id }}</td>
+            <td>{{ notify.book.book }}</td>
+            <td>{{ notify.appUser.id }}</td>
+            <td>{{ notify.appUser.name }}</td>
+            <td>
+              <p (click)="clear(notify.id)" class="fs-5 w-50"> <i class="fas fa-bug"  routerLink="/Issuebook"></i> </p>
+            </td>
+            <td>
+              <p (click)="decline(notify.id)" class="fs-5 w-50"> <i class="fas fa-ban"></i> </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="notifys.length == 0" class="fs-5 text-center mt-3">
+        No Message
+      </div>
+    </div>
 
+    <!-- Second Table (col-6) -->
+    <div class="col-6">
+      <h5 class="ms-3 "> Renewal</h5>
+      <table class="table table-hover ms-3" *ngIf="renewalBooks.length>0" >
+        <thead>
+          <tr >
+            <th scope="col" style="background-color: #893606; color: aliceblue">S.No</th>
+            <th scope="col" style="background-color: #893606; color: aliceblue">Book Code</th>
+            <th scope="col" style="background-color: #893606; color: aliceblue">Book Name</th>
+            <th scope="col" style="background-color: #893606; color: aliceblue">User Code</th>
+            <th scope="col" style="background-color: #893606; color: aliceblue">User Name</th>
+            <th scope="col" style="background-color: #893606; color: aliceblue">Renewal</th>
+            <th scope="col" style="background-color: #893606; color: aliceblue">Delete</th>
+
+            <!-- Define headers for the second table -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let renewalBook of renewalBooks; let i = index">
+            <td>{{ Sno + i }}</td>
+            <td>{{ renewalBook.book.id }}</td>
+            <td>{{ renewalBook.book.book }}</td>
+            <td>{{ renewalBook.appUser.id }}</td>
+            <td>{{ renewalBook.appUser.name }}</td>
+            <td><button type="button"  class="btn btn-success text-dark w-100" data-bs-toggle="modal" data-bs-target="#exampleModalCenter"  (click)="popup(renewalBook)" >
+                Renewal
+            </button></td>
+
+            <td>
+              <p (click)="remove(renewalBook.id)" class="fs-5 w-50"> <i class="fas fa-trash-alt"></i> </p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="fs-5 text-center mt-3 "*ngIf="notifys.length == 0">
+        No Message
+      </div>
+    </div>
+    <!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" role="dialog" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalCenterTitle"> Book Renewal</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #renewalBookForm="ngForm" (ngSubmit)="onSubmit(renewalBookForm)">
+          <!-- Input for Book ID -->
+          <input type="hidden" name="id" [(ngModel)]="id" />
+          <div class="mb-3">
+            <label for="bookId" class="form-label">Book ID</label>
+            <input type="text" class="form-control" id="bookId" placeholder="Enter Book ID" [(ngModel)]="BookId" name="bookId">
+          </div>
+
+          <!-- Input for Student ID -->
+          <div class="mb-3">
+            <label for="studentId" class="form-label">Student ID</label>
+            <input type="text" class="form-control" id="studentId" placeholder="Enter Student ID" [(ngModel)]="UserId" name="userId">
+          </div>
+
+          <!-- Input for Issue Date -->
+          <div class="mb-3">
+            <label for="issueDate" class="form-label">Issue Date</label>
+            <input type="text" class="form-control" id="issueDate" [(ngModel)]="IssueDate" name="issuedDate">
+          </div>
+
+          <!-- Input for Return Date -->
+          <div class="mb-3">
+            <label for="returnDate" class="form-label">Return Date</label>
+            <input type="text" class="form-control" id="returnDate" [(ngModel)]="ReturnDate" name="returnDate">
+          </div>
+
+          <button class="btn btn-danger text-white w-100" type="submit">Renewal</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
-<hr>
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col" style="background-color: #893606; color: aliceblue">S.No</th>
-      <th scope="col" style="background-color: #893606; color: aliceblue">Book Code</th>
-      <th scope="col"style="background-color: #893606; color: aliceblue"> Book Name</th>
-      <th scope="col"style="background-color: #893606; color: aliceblue"> User Code</th>
-      <th scope="col"style="background-color: #893606; color: aliceblue">User Name</th>
-      <th scope="col" style="background-color: #893606; color: aliceblue"> Clear</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let notify of notifys let i=index">
-      <td>{{Sno+i}}</td>
-      <td>{{ notify.book.id}}</td>
-      <td>{{notify.book.book}}</td>
-      <td>{{notify.appUser.id}}</td>
-        <td>{{ notify.appUser.name }}</td>
-        <td><button (click)="clear(notify.id)" 
-          class="btn btn-primary text-white fs-5  w-50" style="background-color:#3c3b3a">clear</button></td>
-    </tr>
-  </tbody>
-</table>
+
+

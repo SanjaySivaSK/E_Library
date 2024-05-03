@@ -55,17 +55,34 @@
         </div>
         <div class="modal-body">
 
-           
-            <p>Fine Amount :{{fineAmount}}</p>
+            <p >Fine Amount :{{fineAmount}}</p>
 
         
         </div>
-        <div class="modal-footer" >
-          
-          <button type="button" class="btn btn-primary" 
-          style="font-size: large; font-weight: 500"
-          class="btn btn-success text-dark w-100"  (click)="returnBook(id)">Return Book</button>
-        </div>
+        <div class="col-10 d-flex align-items-center justify-content-between">
+          <!-- Button 1: Return Book -->
+          <div class="w-75">
+              <button type="button" class="btn btn-danger w-100 m-4" 
+                      style="font-size: large; font-weight: 500; color:black"
+                       data-bs-dismiss="modal" aria-label="Close"
+                      (click)="returnBook(id)">
+                  Return Book
+              </button>
+          </div>
+      
+          <!-- Button 2: Renewal Book -->
+          <div class="w-75" *ngIf="fineAmount==0">
+              <button type="button" class="btn btn-success w-100 m-4" 
+                      style="font-size: large; font-weight: 500; color:black"
+                      data-bs-dismiss="modal" aria-label="Close"
+                      (click)="RenewelBook(id)">
+                  Renewal Book
+              </button>
+          </div>
+      </div>
+      
+      
+      
       </div>
     </div>
   </div>
