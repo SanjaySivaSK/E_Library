@@ -8,6 +8,7 @@ import { RequestBook } from '../model/request-book';
   providedIn: 'root',
 })
 export class NotificationService {
+
   
   
 
@@ -17,6 +18,18 @@ export class NotificationService {
     return this.http.get<AppResponse>(
       'http://localhost:8080/api/notification/message'
     );
+  }
+  acceptedBook() : Observable<AppResponse>{
+    return this.http.get<AppResponse>(
+      'http://localhost:8080/api/notification/SuccessBook'
+    );
+   
+  }
+  declinedBooks() : Observable<AppResponse>{
+    return this.http.get<AppResponse>(
+      'http://localhost:8080/api/notification/DeclinedBook'
+    );
+   
   }
   clear(id: number) {
     console.log(id);
@@ -47,10 +60,11 @@ export class NotificationService {
   }
 
 
-  DeclineBook(id: number):Observable<AppResponse> {
-    console.log(id);
+  DeclineBook(id: number,msg:String):Observable<AppResponse> {
+    console.log(id,msg);
 
-    const url = `http://localhost:8080/api/notification/decline/${id}`;
+    const url = `http://localhost:8080/api/notification/decline/${id}/message/${msg}`;
+    
     return this.http.put<AppResponse>(url, null);
   }
 

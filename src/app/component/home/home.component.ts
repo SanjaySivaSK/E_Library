@@ -14,7 +14,6 @@ import Swal from 'sweetalert2';
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
-  
   books: Book[] = [];
   filteredBooks: Book[] = [];
 
@@ -23,9 +22,9 @@ export class HomeComponent implements OnInit {
   CategoryName: string = '';
   AuthorName: string = '';
   Description: string = '';
-  Stock:number=0;
-  UserName:String=""
-  Notification:any[]=[]
+  Stock: number = 0;
+  UserName: String = '';
+  Notification: any[] = [];
 
   searchQuery: string = '';
 
@@ -33,15 +32,12 @@ export class HomeComponent implements OnInit {
     private bookservice: BookService,
     private notification: NotificationService,
     private storageService: StorageService,
-    private router:Router
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     // this.showMessage()
-    
-        
-        
-    
+
     this.bookservice.getbooks().subscribe({
       next: (response) => {
         this.books = response.data;
@@ -54,47 +50,43 @@ export class HomeComponent implements OnInit {
         console.log('completed');
       },
     });
-    this.UserName=this.storageService.getLoggedInUser().username  
+    this.UserName = this.storageService.getLoggedInUser().username;
 
     let userId = this.storageService.getLoggedInUser().id;
     let showMessage = true; // Flag to track whether to show the Swal message
-    
+
     this.notification.GetDeclineBook(userId).subscribe({
       next: (response) => {
         let notifications: any[] = response.data;
-    
+
         for (let notification of notifications) {
           console.log(notification.decline);
-    
+
           if (notification.decline && showMessage) {
             // Handle the case where the book is declined
             Swal.fire({
               title: 'Book Declined',
-              text: `The book ${notification.book.book} was declined.`,
+              text: `The book ${notification.book.book} was declined. Reason: ${notification.message} .`,
+
               icon: 'error',
               reverseButtons: true,
             }).then((result) => {
               if (result.isConfirmed) {
-
                 this.notification.Accept(notification.id).subscribe({
-                  next:(resp)=>{
-                        "accept"
-                  }
-                }) 
-                console.log(notification.id)
-               
-
-
+                  next: (resp) => {
+                    'accept';
+                  },
+                });
+                console.log(notification.id);
               }
             });
-          } 
+          }
         }
       },
       error: (error) => {
         console.error('An error occurred:', error);
       },
     });
-    
   }
 
   onSearch() {
@@ -110,8 +102,7 @@ export class HomeComponent implements OnInit {
     this.CategoryName = bookshow.category.category;
     this.bookName = bookshow.book;
     this.Description = bookshow.description;
-    this.Stock=bookshow.stock
-
+    this.Stock = bookshow.stock;
   }
 
   requestBook(id: number) {
@@ -123,25 +114,22 @@ export class HomeComponent implements OnInit {
 
     this.notification.RequestBook(rBook).subscribe({
       next: (Response) => {
-        console.log("success");
+        console.log('success');
       },
     });
     console.log(rBook);
   }
 
   showMessage() {
-  
-    
-   
-      Swal.fire({
-        title: 'Chief, You got a message!',
-        icon: 'info',
-        reverseButtons: true,
-      }).then((result) => {
-        if (result.isConfirmed) {
-         
-        } else if (result.dismiss === Swal.DismissReason.cancel) {
-          Swal.fire('Cancelled', 'Your action was cancelled', 'error');
-        }
-      });
-    } }
+    Swal.fire({
+      title: 'Chief, You got a message!',
+      icon: 'info',
+      reverseButtons: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire('Cancelled', 'Your action was cancelled', 'error');
+      }
+    });
+  }
+}

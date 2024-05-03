@@ -1,7 +1,24 @@
-  <div class="d-flex justify-content-between align-items-center mt-5">
+<div class="d-flex justify-content-between align-items-center mt-5">
+  <!-- Left side with Notifications heading -->
+  <div>
     <h1 style="font-family: 'Times New Roman';">Notifications</h1>
   </div>
+
+  <!-- Right side with buttons -->
+  <div class="d-flex">
+    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModals">
+      Success
+    </button>
+    <button type="button" class="btn btn-warning ms-2" data-bs-toggle="modal" data-bs-target="#declined">
+      Declined
+    </button>
+  </div>
+</div>
+
+  
+ 
   <hr>
+
 
   <div class="d-flex">
     <!-- First Table (col-6) -->
@@ -28,10 +45,13 @@
             <td>{{ notify.appUser.id }}</td>
             <td>{{ notify.appUser.name }}</td>
             <td>
-              <p (click)="clear(notify.id)" class="fs-5 w-50"> <i class="fas fa-bug"  routerLink="/Issuebook"></i> </p>
+              <p (click)="clear(notify.id)" class="fs-5 w-50"> <i class="fas fa-bug"   ></i> </p>
             </td>
             <td>
-              <p (click)="decline(notify.id)" class="fs-5 w-50"> <i class="fas fa-ban"></i> </p>
+              <p  (click)="declinePopup(notify)" class="text-danger " data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Decline
+              </p>
+             
             </td>
           </tr>
         </tbody>
@@ -144,5 +164,101 @@
     </div>
   </div>
 </div>
+  </div>
 
 
+
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Decline</h1>
+          <button type="button" class="btn-close"data-bs-dismiss="modals"  aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form #DeclineBook="ngForm" (click)="onSubmits(DeclineBook)">
+            <input type="hidden" name="dId" [(ngModel)]="dId" />
+          <div class="mb-3">
+            <label for="Decline" class="form-label">Message</label>
+            <input type="text" class="form-control" id="DeclineId" placeholder="Enter Message " [(ngModel)]="declineMessage" name="declineMessage">
+          </div>
+
+         
+      
+        <div class="modals-footer">
+          <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+          <button type="submit" class="btn btn-danger text-dark"  data-bs-dismiss="modal">Decline</button>
+          </div>
+        </form>
+
+          </div>
+          </div>
+        </div>
+      </div>
+   
+ <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModals" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Accepted</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered table-hover">
+          <thead class="thead-light">
+            <tr>
+              <th>Book</th>
+              <th>User</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let accepts of Accepted">
+              <td>{{ accepts.book.book }}</td> 
+              <td>{{ accepts.appUser.name }}</td> 
+            </tr>
+          </tbody>
+        </table>
+       
+      </div>
+ 
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="declined" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered table-hover">
+          <thead class="thead-light">
+            <tr>
+              <th>Book</th>
+              <th>User</th>
+              <th>Message</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let decline of DeclinedBooks">
+              <td>{{ decline.book.book }}</td> 
+              <td>{{ decline.appUser.name }}</td> 
+              <td>{{ decline.message }}</td>
+            </tr>
+          </tbody>
+        </table>
+        
+      
+      </div>
+    
+    </div>
+  </div>
+</div>
